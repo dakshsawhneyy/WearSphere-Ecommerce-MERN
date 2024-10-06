@@ -14,7 +14,7 @@ import Navbar from './components/Navbar'
 const App = () => {
   const [darkMode, setDarkMode] = useState(false)
 
-  //* Removing dark class from elements
+  //* Removing and adding dark class from elements
   useEffect(() => {
     if(darkMode){
       document.documentElement.classList.add('dark')

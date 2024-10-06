@@ -28,6 +28,7 @@
                         </NavLink>
                     </div>
                     <div className="flex items-center gap-5">
+                        {/* Making dark mode button */}
                         <button onClick={()=>setDarkMode(!darkMode)} className="hidden sm:block border rounded p-2 bg-white dark:bg-black text-black dark:text-white">{darkMode ? 'Enable Light Mode' : 'Enable Red Mode'}</button>
                         <img src={assets.search_icon} className="w-6 h-6 cursor-pointer" alt="" />
                         {/* DropDown on profile icon */}
@@ -58,7 +59,7 @@
                                 <img src={assets.dropdown_icon} className="w-3 rotate-180" alt="" />
                                 <p>Back</p>
                             </div>
-                            <div className="flex flex-col gap-5">
+                            <div className="flex flex-col gap-2 mt-10">
                                 <NavLink to='/' className="py-2 pl-6 border" onClick={()=>setVisible(false)} >HOME</NavLink>
                                 <NavLink to='/collection' className="py-2 pl-6 border" onClick={()=>setVisible(false)} >COLLECTION</NavLink>
                                 <NavLink to='/about' className="py-2 pl-6 border" onClick={()=>setVisible(false)} >ABOUT</NavLink>
