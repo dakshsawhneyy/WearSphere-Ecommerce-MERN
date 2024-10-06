@@ -1,8 +1,12 @@
 *{
   margin: 0;
   padding: 0;
-
 }
+
+a.active hr{
+  display: block
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
