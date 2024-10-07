@@ -1,13 +1,14 @@
         import React, { useState } from "react";
         import { assets } from "../assets/frontend_assets/assets";
-        import { Link, NavLink } from "react-router-dom";
+        import { Link, NavLink, useNavigate } from "react-router-dom";
 
         const Navbar = ({darkMode,setDarkMode}) => {
+            const navigate = useNavigate();
             const [visible, setVisible] = useState(false)
             return (
                 <div className="flex items-center bg-white dark:bg-[red] text-black dark:text-white">
                     <div className="flex items-center">
-                        <img src={assets.logo} className=" w-28 sm:w-40" alt="" />
+                        <img onClick={()=>navigate('/')} src={assets.logo} className=" w-28 sm:w-40 cursor-pointer" alt="" />
                     </div>
                     <div className="m-auto flex gap-5 font-semibold">
                         <NavLink to="/" className="sm:flex flex-col items-center hidden" >
