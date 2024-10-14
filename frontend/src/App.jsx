@@ -11,6 +11,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import Product from './pages/Product'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import SearchBar from './components/SearchBar'
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false)
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <div className={`px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] pt-3 bg-white dark:bg-[red] text-white dark:text-white`}>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <SearchBar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/about' element={<About/>}></Route>
