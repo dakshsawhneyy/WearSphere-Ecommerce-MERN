@@ -5,7 +5,7 @@ import Title from '../components/Title'
 import ProductItems from '../components/ProductItems'
 
 const Collection = () => {
-    const { products } = useContext(ShopContext)
+    const { products,search,showSearch } = useContext(ShopContext)
     const [showFilter, setShowFilter] = useState(true)
     const [filterProducts, setFilterProducts] = useState([])    // filterProducts are used to display all products initially but setFilterProducts are used to display after applying filters
     const [category, setCategory] = useState([])
@@ -37,14 +37,22 @@ const Collection = () => {
     // It slices the products based on the categories i.e. removes extra products
     const applyFilter = () => {
         let productsCopy = products.slice();    // making a copy of products slicing after removing filters
+
+        // * Search Bar FUnctionality
+        if(search && showSearch){
+            productsCopy= productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        }
+
         // If category length i.e. category items must be there and then by filter methord include it from assets.jsx
         if(category.length > 0){
             productsCopy = productsCopy.filter(item => category.includes(item.category));
         }
+
         // If subCategory length i.e. subCategory items must be there and then by filter methord include it from assets.jsx
         if(subCategory.length > 0){
             productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
         }
+
         // filterProducts are used to display all products initially but setFilterProducts are used to display after applying filters
         setFilterProducts(productsCopy) // when page is reloaded this productsCopy would be initialized
     }
@@ -70,7 +78,7 @@ const Collection = () => {
 
     useEffect(()=>{
         applyFilter();
-    },[category,subCategory])
+    },[category,subCategory,search,showSearch])     // whenever any of these items gets updated applyFilter fxn gets executed
 
     // useEffect(() => {
     //     console.log(category)

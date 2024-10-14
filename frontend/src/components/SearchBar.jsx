@@ -9,6 +9,10 @@ const SearchBar = () => {
     const location = useLocation();
     const [visible, setVisible] = useState(false);
 
+    const eraseText = () => {
+        setSearch(' ');
+    }
+
     useEffect(()=>{
         // agr collection page pe ho aur showSearch true ho tbhi search bar show krna wrna nahi 
         if(location.pathname.includes('collection')){
@@ -23,6 +27,7 @@ return showSearch && visible ? (
     <div className='border-t border-b flex items-center p-3 mt-5 bg-gray-50 justify-center gap-5'>
         <div className='flex items-center px-5 py-3 border rounded-full w-3/4 sm:w-1/2'>
             <input value={search} onChange={(e) => setSearch(e.target.value)} className='flex-1 outline-none bg-inherit text-sm text-gray-800' type="text" placeholder='Search' />
+            {search != 0 ? <button onClick={()=>eraseText()} className= 'mx-5 bg-red-600 px-3 rounded py-1 text-white'>Clear</button> : ""}
             <img src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
         </div>
         <img src={assets.cross_icon} onClick={() => setShowSearch(false)} className='w-4 h-4 cursor-pointer' alt="" />
