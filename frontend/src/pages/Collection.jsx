@@ -38,7 +38,7 @@ const Collection = () => {
     const applyFilter = () => {
         let productsCopy = products.slice();    // making a copy of products slicing after removing filters
 
-        // * Search Bar FUnctionality
+        // * Search Bar Functionality
         if(search && showSearch){
             productsCopy= productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
         }
