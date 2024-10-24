@@ -7,7 +7,7 @@ import { ShopContext } from "../context/ShopContext";
             const navigate = useNavigate();
             const [visible, setVisible] = useState(false)
 
-            const { showSearch,setShowSearch } = useContext(ShopContext);
+            const { showSearch,setShowSearch,getCartCount } = useContext(ShopContext);
             return (
                 <div className="flex items-center bg-white dark:bg-[red] text-black dark:text-white">
                     <div className="flex items-center">
@@ -49,7 +49,7 @@ import { ShopContext } from "../context/ShopContext";
                         
                         <Link to='/cart' className="relative"> 
                             <img src={assets.cart_icon} className="w-6 h-6" alt="" />
-                            <p className="absolute bg-black right-[-5px] bottom-[-5px] aspect-square rounded w-4 h-4 text-[9px] text-white leading-4 text-center">10</p>
+                            <p className="absolute bg-black right-[-5px] bottom-[-5px] aspect-square rounded w-4 h-4 text-[9px] text-white leading-4 text-center">{getCartCount()}</p>
                         </Link>
 
                         {/* Making Menu icon for mobile screen */}

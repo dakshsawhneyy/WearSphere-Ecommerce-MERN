@@ -12,6 +12,8 @@ import Product from './pages/Product'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false)
@@ -24,10 +26,10 @@ const App = () => {
       document.documentElement.classList.remove('dark')
     }
   },[darkMode])
-  
 
   return (
     <div className={`px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] pt-3 bg-white dark:bg-[red] text-white dark:text-white`}>
+      <ToastContainer />
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
       <SearchBar />
       <Routes>

@@ -6,7 +6,7 @@ import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
     const {productId} = useParams(); // to get id from the url  // use same productId as in app.jsx
-    const {products,currency} = useContext(ShopContext);
+    const {products,currency,addToCart,cartItems} = useContext(ShopContext);
     const [productData, setProductData] = useState(false);  // making state for displaying data based on id.. in setProductData mapping data of item.id
     const [image, setImage] = useState('');     // for storing first image of productData to display first image initially
     const [size, setSize] = useState('');
@@ -19,6 +19,7 @@ const Product = () => {
             if(item._id === productId){
                 setProductData(item);   // storing all data based of item._id from assets in setProductData
                 setImage(item.image[0]);    // storing first image in setImage  // we can change image by storing item on setImage
+                // console.log(item);
                 return null;
             }
         })
@@ -73,7 +74,7 @@ return productData ? (
                         }
                     </div>
                 </div>
-                <button className='bg-black text-white mt-12 px-4 py-2 rounded active:bg-gray-700'>ADD TO CART</button>
+                <button onClick={()=> addToCart(productData._id,size)} className='bg-black text-white mt-12 px-4 py-2 rounded active:bg-gray-700'>ADD TO CART</button>
                 <hr className='w-4/5 mt-5 outline-none'/>
                 <div className='mt-4'>
                     <p className='text-gray-500'>100% Original Product</p>
