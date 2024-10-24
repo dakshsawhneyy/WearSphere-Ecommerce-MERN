@@ -37,7 +37,7 @@ return productData ? (
 
             {/* --------Product Images---------- */}
             <div className='flex mt-4 flex-1 flex-col-reverse sm:flex-row gap-8'>
-                <div className='flex justify-between w-auto sm:justify-normal flex-row sm:flex-col overflow-x-auto sm:overflow-y-scroll '>
+                <div className='flex justify-between w-auto sm:justify-normal flex-row sm:flex-col overflow-x-auto sm:overflow-y-scroll gap-2'>
                     {
                         productData.image.map((item,index) => (
                             // for making small changing both height and width and adding object-cover for better display
