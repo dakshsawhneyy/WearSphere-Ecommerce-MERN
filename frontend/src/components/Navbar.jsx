@@ -37,8 +37,8 @@ import { ShopContext } from "../context/ShopContext";
                         <img src={assets.search_icon} onClick={() => setShowSearch(!showSearch)} className="w-6 h-6 cursor-pointer" alt="" />
                         {/* DropDown on profile icon */}
                         <div className="relative group">
-                            <img src={assets.profile_icon} className="w-6 h-6 cursor-pointer" alt="" />
-                            <div className="hidden group-hover:block absolute dropdown-menu right-0 mt-2 p-2 bg-white shadow-lg rounded-lg">
+                            <NavLink to={'/login'}><img src={assets.profile_icon} className="w-6 h-6 cursor-pointer" alt="" /></NavLink>
+                            <div className="hidden group-hover:block absolute dropdown-menu right-0 mt-0 p-2 bg-white shadow-lg rounded-lg">
                                 <div className="flex flex-col gap-2 w-28">
                                     <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">My Profile</p>
                                     <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Orders</p>
