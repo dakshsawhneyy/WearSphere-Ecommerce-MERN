@@ -34,7 +34,7 @@ const ShopContextProvider = (props) => {
             cartData[itemId] = {};
             cartData[itemId][size] = 1;
         }
-        setCartItems(cartData);
+        setCartItems(cartData); //it means cartItems contains only id and size
     }
 
     // making function for storing count in cart icon in navbar for how many products present in cart 
@@ -65,6 +65,27 @@ const ShopContextProvider = (props) => {
         setCartItems(cartData);
     }
 
+    // A function to total amount of cart
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for(let items in cartItems){
+            let itemInfo = products.find((product) => product._id == items);
+            // If it finds this product then this product data will be stored in itemInfo
+            for(let item in cartItems[items]){
+                try {
+                    if(cartItems[items][item] > 0 ){ //cartItems[items][item] means quanitity of that size
+                        totalAmount += itemInfo.price * cartItems[items][item];
+                    } 
+
+                } catch (error) {
+                    toast.error("Error Occured");
+                    console.log(error);
+                }
+            }
+        }
+        return totalAmount;
+    }
+
     useEffect(() => {
         console.log(cartItems);
     },[cartItems])
@@ -76,7 +97,8 @@ const ShopContextProvider = (props) => {
         cartItems,setCartItems,
         addToCart,
         getCartCount,
-        updateQuantity
+        updateQuantity,
+        getCartAmount
     }
 
     return (
