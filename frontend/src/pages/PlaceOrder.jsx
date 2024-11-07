@@ -55,7 +55,7 @@ return (
                             <img src={assets.razorpay_logo} className='w-28' alt="" />
                         </div>
                     </div>
-                    <div onClick={()=>setMethod('cod')} className='border flex sm:px-5 px-2 py-1 justify-between cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center text-sm'>
+                    <div onClick={()=>setMethod('cod')} className='active:bg-gray-300 border flex sm:px-5 px-2 py-1 justify-between cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center text-sm'>
                         <p className='text-black'>Cash On Delivery</p>
                     </div>
                 </div>
