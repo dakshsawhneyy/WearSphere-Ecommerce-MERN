@@ -1,4 +1,5 @@
-import { v2 } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+import productModel from "../models/productModel.js";
 
 // function to add product
 // To add a product we will create a middleware using multer
@@ -7,6 +8,11 @@ const addProduct = async(req,res) => {
         // console.log(req.files);  // Log to inspect
 
         const { name,description,price,category,subCategory,sizes,bestseller } = req.body;
+        const validPrice = price && !isNaN(price) && price.trim() !== "" ? Number(price) : null;
+        if (validPrice === null) {
+            return res.status(400).json({ success: false, message: "Invalid price value" });
+        }
+
         //* Then for adding images we have to get that from req.files // also check if image1 is present or not. if present image[0] would be stored
         const image1 = req.files.image1 && req.files.image1[0] // image1 is array so its image inside would be its first element
         const image2 = req.files.image2 && req.files.image2[0]
@@ -23,11 +29,30 @@ const addProduct = async(req,res) => {
             })
         )
 
-        // printing on terminal
-        console.log(name,description,price,category,subCategory,sizes,bestseller)
-        console.log(imagesURL)
+        // now storing these data on mongoDB
+        const productData = {
+            name,
+            description,
+            category,
+            price: Number(price),
+            subCategory,
+            bestseller: bestseller === "true" ? true : false,   //convert bestseller into boolean
+            sizes: JSON.parse(sizes),   // we cannot send arr directly as form data so sending it through JSON.parse
+            image: imagesURL,
+            date: Date.now()
+        }
 
-        res.json({})
+        console.log(productData)
+
+        // to add data we have to import product model
+        const product = new productModel(productData)
+        await product.save()    // storing data in database
+
+        // printing on terminal
+        // console.log(name,description,price,category,subCategory,sizes,bestseller)
+        // console.log(imagesURL)
+
+        res.json({success:true, message:"Product Added"})
     } catch (error) {
         console.log(error);
         res.json({success:false,message:error.message})
