@@ -1,10 +1,10 @@
-
+import { v2 } from "cloudinary";
 
 // function to add product
 // To add a product we will create a middleware using multer
-const addProduct = (req,res) => {
+const addProduct = async(req,res) => {
     try {
-        console.log(req.files);  // Log to inspect
+        // console.log(req.files);  // Log to inspect
 
         const { name,description,price,category,subCategory,sizes,bestseller } = req.body;
         //* Then for adding images we have to get that from req.files // also check if image1 is present or not. if present image[0] would be stored
@@ -16,9 +16,16 @@ const addProduct = (req,res) => {
         const images = [image1,image2,image3,image4].filter((item) => item != undefined)  //check if image is not undefined.. if it is undefined dont store it in database
 
         // storing these images on cloudinary
+        let imagesURL = await Promise.all(
+            images.map(async (item) => {
+                let result = await cloudinary.uploader.upload(item.path,{resource_type:'image'});
+                return result.secure_url
+            })
+        )
 
+        // printing on terminal
         console.log(name,description,price,category,subCategory,sizes,bestseller)
-        console.log(images)
+        console.log(imagesURL)
 
         res.json({})
     } catch (error) {
