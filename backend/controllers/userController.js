@@ -80,6 +80,22 @@ const registerUser = async (req, res) => {
 };
 
 // Route for admin login
-const adminLogin = async (req, res) => {};
+const adminLogin = async (req, res) => {
+    try {
+        const {email,password} = req.body
+        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+            // if both email and password matches then create a token
+            const token = jwt.sign(email + password,process.env.JWT_SECRET);
+            res.json({success:true,token})
+        }else {
+            res.json({success:false,message:"Invalid Credentials"})
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, msg: error.message });
+    }
+};
+// using this adminLogin we can authenticate admin with help of middleware
+
 
 export { loginUser, registerUser, adminLogin };
