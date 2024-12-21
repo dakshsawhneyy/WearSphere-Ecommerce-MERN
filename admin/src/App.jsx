@@ -1,9 +1,15 @@
-import './App.css'
+import React from 'react'
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
 
-function App() {
+const App = () => {
   return (
-    <div className=''>
-      
+    <div className='min-h-screen bg-gray-50'>
+      <Navbar/>
+      <hr className='px-16'/>
+      <div className='flex w-full'>
+        <Sidebar/>
+      </div>
     </div>
   )
 }
