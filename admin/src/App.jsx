@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import { Route, Routes } from 'react-router-dom'
@@ -13,7 +13,13 @@ export const backend_url = import.meta.env.VITE_BACKEND_URL;   // importing back
 
 const App = () => {
 
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');
+
+  //* we need to store token in local storage so dont have to login again and again
+  useEffect(() => {
+    localStorage.setItem('token',token)
+  }, [token]) // whenever token gets updated this function gets executed
+  
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -21,7 +27,7 @@ const App = () => {
       { token === ""
         ? <Login setToken={setToken}/>
         : <>
-        <Navbar/>
+        <Navbar setToken={setToken} />
         <hr className='px-16'/>
         <div className='flex w-full'>
           <Sidebar/>
