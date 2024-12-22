@@ -7,6 +7,9 @@ import List from './pages/List'
 import Orders from './pages/Orders'
 import { useState } from 'react'
 import Login from './components/Login'
+import { ToastContainer } from 'react-toastify';
+
+export const backend_url = import.meta.env.VITE_BACKEND_URL;   // importing backend url from env
 
 const App = () => {
 
@@ -14,8 +17,9 @@ const App = () => {
 
   return (
     <div className='min-h-screen bg-gray-50'>
+      <ToastContainer />
       { token === ""
-        ? <Login/>
+        ? <Login setToken={setToken}/>
         : <>
         <Navbar/>
         <hr className='px-16'/>
