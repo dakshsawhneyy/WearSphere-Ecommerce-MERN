@@ -35,7 +35,7 @@ const App = () => {
           <div className='w-[70%] my-8 ml-[max(5vw,25px)] text-gray-600 text-base'>
             <Routes>
               <Route path='/add' element={<Add token={token}/>}/> {/*We need token to authenticate in add.jsx*/}
-              <Route path='/list' element={<List/>}/>
+              <Route path='/list' element={<List token={token}/>}/>
               <Route path='/orders' element={<Orders/>}/>
             </Routes>
           </div>

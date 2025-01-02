@@ -15,7 +15,7 @@ productRouter.post('/add',adminAuth,
         {name:'image4',maxCount:1}
     ]),addProduct);
 productRouter.get('/list',listProducts);
-productRouter.delete('/remove',adminAuth,removeProduct);
+productRouter.post('/remove',adminAuth,removeProduct);
 productRouter.post('/single',singleProduct);
 
 export default productRouter;

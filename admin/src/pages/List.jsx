@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { backend_url, currency } from '../App'
 
-const List = () => {
+const List = ({token}) => {
     
     // First we need to get data from api and store it in state variable
     const [list, setList] = useState([])
@@ -24,8 +24,24 @@ const List = () => {
         }
     }
 
+    const removeProduct = async(id) => {
+        try {
+            const response = await axios.post(backend_url+`/api/product/remove`,{id},{headers:{token}}) // it is one of admin features so it requires token
+            if (response.data.success) {
+                toast.success(response.data.message)
+                // After deleteing product our list is updated so call function of list
+                await fetchList();
+            } else {
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
     useEffect(() => {
         fetchList();
+        console.log(token)
     }, [])
 
 return (
@@ -49,7 +65,7 @@ return (
                         <p>{item.name}</p>
                         <p>{item.category}</p>
                         <p>{currency}{item.price}</p>
-                        <p className='text-center bg-red-600 rounded h-8 flex w-8 ml-auto mr-auto justify-center items-center text-white cursor-pointer'>X</p>
+                        <p onClick={()=>removeProduct(item._id)} className='text-center bg-red-600 rounded h-8 flex w-8 ml-auto mr-auto justify-center items-center text-white cursor-pointer'>X</p>
                     </div>
                 ))
             }
