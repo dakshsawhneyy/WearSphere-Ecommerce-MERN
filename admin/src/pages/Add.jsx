@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
 import { toast } from 'react-toastify'
+import axios from 'axios'
+import { backend_url } from '../App'
 
-const Add = () => {
+const Add = ({token}) => {
 
   // making state variables to store images
   const [image1, setImage1] = useState(false)
@@ -39,6 +41,22 @@ const Add = () => {
       image3 && formData.append("image3",image3)
       image4 && formData.append("image4",image4)
 
+      const response = await axios.post(backend_url + '/api/product/add',formData,{headers:{token}})
+
+      if(response.data.success){
+        toast.success(response.data.message)
+        setName('')
+        setDescription('')
+        setImage1(false)
+        setImage2(false)
+        setImage3(false)
+        setImage4(false)
+        setPrice('')
+      }else{
+        toast.error(response.data.message)
+      }
+      // console.log(response)
+
     } catch (error) {
       toast.error(error)
     }
@@ -50,19 +68,19 @@ const Add = () => {
         <p className='text-xl'>Upload Image</p>
         <div className='flex gap-3 mt-3'>
           <label htmlFor="image1">
-            <img src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} className='w-24' alt="" />
+            <img src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} className='w-24 cursor-pointer' alt="" />
             <input onChange={(e)=>setImage1(e.target.files[0])} type="file" id='image1' hidden />
           </label>
           <label htmlFor="image2">
-            <img src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} className='w-24' alt="" />
+            <img src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} className='w-24 cursor-pointer' alt="" />
             <input onChange={(e)=>setImage2(e.target.files[0])} type="file" id='image2' hidden />
           </label>
           <label htmlFor="image3">
-            <img src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} className='w-24' alt="" />
+            <img src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} className='w-24 cursor-pointer' alt="" />
             <input onChange={(e)=>setImage3(e.target.files[0])} type="file" id='image3' hidden />
           </label>
           <label htmlFor="image4">
-            <img src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} className='w-24' alt="" />
+            <img src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} className='w-24 cursor-pointer' alt="" />
             <input onChange={(e)=>setImage4(e.target.files[0])} type="file" id='image4' hidden />
           </label>
         </div>
@@ -125,7 +143,7 @@ const Add = () => {
       </div>
 
       <div className='flex mt-3 gap-2'>
-        <input onChange={()=>setBestSeller(prev != prev)} checked={bestSeller} type="checkbox" />  {/* On change make if it is true make it false and vice versa */}
+        <input onChange={()=>setBestSeller(prev => !prev)} checked={bestSeller} type="checkbox" />  {/* On change make if it is true make it false and vice versa */}
         <p className=''>Add to BestSeller</p>
       </div>
 
