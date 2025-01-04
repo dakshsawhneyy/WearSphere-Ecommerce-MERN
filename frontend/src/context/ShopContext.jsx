@@ -1,7 +1,7 @@
 import { createContext, useEffect } from "react";
-import { products } from "../assets/frontend_assets/assets";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import axios from 'axios'
 
 export const ShopContext = createContext();
 
@@ -13,6 +13,8 @@ const ShopContextProvider = (props) => {
     const [search, setSearch] = useState('');   /// making this state to change state of search when input is done in search
     const [showSearch, setShowSearch] = useState(false)   // making this to show and unshow search bar
     const [cartItems, setCartItems] = useState({});     // {} means emply object and making this state to store cart items data
+    // soring products in products state variable
+    const [products, setProducts] = useState([])
 
     const addToCart = async(itemId,size) => {
         // If size is not selected give an error
@@ -90,6 +92,20 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         console.log(cartItems);
     },[cartItems])
+
+    const getProductData = async() => {
+        try {
+            // to call api using axios
+            const response = await axios.get(backendUrl + '/api/product/list')
+            console.log(response.data)
+        } catch (error) {
+            
+        }
+    }
+
+    useEffect(() => {
+        getProductData();
+    }, [])
 
     const value = {
         products,currency,delivery_fee,
