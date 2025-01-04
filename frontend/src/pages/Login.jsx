@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -32,13 +32,13 @@ const Login = () => {
             }else{
                 // We will call login api
                 const response = await axios.post(backendUrl + '/api/user/login',{ email,password })
+                console.log(response.data)
                 if(response.data.success){
                     setToken(response.data.token)
                     // store token in local storage
                     localStorage.setItem('token',response.data.token)
                 }else{
-                    console.log(response.data)
-                    toast.error(response.data.msg)
+                    toast.error(response.data.message)
                 }
             }
         } catch (error) {
@@ -46,6 +46,12 @@ const Login = () => {
             toast.error(error.message)
         }
     }
+
+    useEffect(() => {
+        if(token){
+            navigate('/')
+        }
+    }, [token])
 
 return (
     <form onSubmit={handleSubmit} className='flex flex-col items-center m-auto h-[80%] mt-28 sm:mt-36 mb-36'>

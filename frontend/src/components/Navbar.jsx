@@ -7,7 +7,15 @@
             const navigate = useNavigate();
             const [visible, setVisible] = useState(false)
 
-            const { showSearch,setShowSearch,getCartCount } = useContext(ShopContext);
+            const { showSearch,setShowSearch,getCartCount,token,setToken,setCartItems } = useContext(ShopContext);
+
+            const logOut = () => {
+                navigate('/login')
+                localStorage.removeItem('token')
+                setToken('')
+                setCartItems({})
+            }
+
             return (
                 <div className="flex items-center bg-white dark:bg-[red] text-black dark:text-white">
                     <div className="flex items-center">
@@ -41,7 +49,7 @@
                                 <div className="flex flex-col gap-2 w-28">
                                     <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">My Profile</p>
                                     <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Orders</p>
-                                    <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Logout</p>
+                                    <p onClick={()=>logOut()} className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Logout</p>
                                 </div>
                             </div>
                         </div>

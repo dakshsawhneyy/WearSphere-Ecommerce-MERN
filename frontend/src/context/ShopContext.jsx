@@ -107,9 +107,18 @@ const ShopContextProvider = (props) => {
         }
     }
 
+    // it is used to list products fetched from api
     useEffect(() => {
         getProductData();
     }, [])
+
+    // if token is available in local storage, store token in token state
+    useEffect(()=>{
+        // when we refresh page token is refreshed but token is in local storage so give that storage token to token state
+        if(!token && localStorage.getItem('token')){
+            setToken(localStorage.getItem('token'));
+        }
+    },[])
 
     const value = {
         products,currency,delivery_fee,
