@@ -89,17 +89,19 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     }
 
-    useEffect(() => {
-        console.log(cartItems);
-    },[cartItems])
-
     const getProductData = async() => {
         try {
             // to call api using axios
             const response = await axios.get(backendUrl + '/api/product/list')
-            console.log(response.data)
+            if (response.data.success) {
+                setProducts(response.data.products)
+            } else {
+                toast.error(response.data.message)
+            }
+            //console.log(response.data)
         } catch (error) {
-            
+            console.log(error)
+            toast.error(error.message)
         }
     }
 

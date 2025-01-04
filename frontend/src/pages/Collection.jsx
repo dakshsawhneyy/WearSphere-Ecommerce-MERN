@@ -78,7 +78,7 @@ const Collection = () => {
 
     useEffect(()=>{
         applyFilter();
-    },[category,subCategory,search,showSearch])     // whenever any of these items gets updated applyFilter fxn gets executed
+    },[category,subCategory,search,showSearch,products])     // whenever any of these items gets updated applyFilter fxn gets executed
 
     // useEffect(() => {
     //     console.log(category)
