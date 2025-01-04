@@ -19,7 +19,7 @@
             return (
                 <div className="flex items-center bg-white dark:bg-[red] text-black dark:text-white">
                     <div className="flex items-center">
-                        <img onClick={()=>navigate('/')} src={assets.logo} className=" w-28 sm:w-40 cursor-pointer" alt="" />
+                        <img onClick={()=> token ? navigate('/') : null} src={assets.logo} className=" w-28 sm:w-40 cursor-pointer" alt="" />
                     </div>
                     <div className="m-auto flex gap-5 font-semibold">
                         <NavLink to="/" className="sm:flex flex-col items-center hidden" >
@@ -45,10 +45,10 @@
                         {/* DropDown on profile icon */}
                         <div className="relative group">
                             <NavLink to={'/login'}><img src={assets.profile_icon} className="w-6 h-6 cursor-pointer" alt="" /></NavLink>
-                            <div className="hidden group-hover:block absolute dropdown-menu right-0 mt-0 p-2 bg-white shadow-lg rounded-lg">
+                            <div className={`${token ? "hidden group-hover:block absolute dropdown-menu right-0 mt-0 p-2 bg-white shadow-lg rounded-lg" : "hidden"}`}>
                                 <div className="flex flex-col gap-2 w-28">
                                     <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">My Profile</p>
-                                    <p className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Orders</p>
+                                    <p onClick={()=> navigate('/orders')} className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Orders</p>
                                     <p onClick={()=>logOut()} className="cursor-pointer p-2 text-gray-700 hover:text-white hover:bg-blue-500 transition-colors duration-300 rounded-md">Logout</p>
                                 </div>
                             </div>
