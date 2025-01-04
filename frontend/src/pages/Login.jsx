@@ -21,15 +21,25 @@ const Login = () => {
             // We will call login api so first making three state vairiable to store value of name,email and password
             if(currState === 'Sign Up'){
                 // we will call signup api
-                const response = await axios.post(backendUrl + '/api/user/register', {
-                    name,
-                    email,
-                    password,
-                });
-                console.log(response.data);
-                
+                const response = await axios.post(backendUrl + '/api/user/register', { name, email, password });
+                if(response.data.success){
+                    setToken(response.data.token)
+                    // store token in local storage
+                    localStorage.setItem('token',response.data.token)
+                }else{
+                    toast.error(response.data.msg)
+                }
             }else{
                 // We will call login api
+                const response = await axios.post(backendUrl + '/api/user/login',{ email,password })
+                if(response.data.success){
+                    setToken(response.data.token)
+                    // store token in local storage
+                    localStorage.setItem('token',response.data.token)
+                }else{
+                    console.log(response.data)
+                    toast.error(response.data.msg)
+                }
             }
         } catch (error) {
             console.log(error)
@@ -52,11 +62,11 @@ return (
         {
             currState === 'Login' ?
             <div className='text-black mt-10 md:mt-10 w-[75%] sm:w-[48%] lg:w-[34%] items-center text-center'>
-                <p onClick={()=>setcurrState('Sign Up')} className='cursor-pointer'>Don't have an account? Sign Up</p>
+                <p onClick={()=>setcurrState('Sign Up')} className='cursor-pointer'>Don't have an account? <span className=' hover:text-red-800 font-bold'>Sign Up</span></p>
             </div>
             : 
             <div className='text-black mt-10 md:mt-10 w-[75%] sm:w-[48%] lg:w-[34%] items-center text-center'>
-                <p onClick={()=>setcurrState('Login')} className='cursor-pointer'>Already have an account? LOGIN</p>
+                <p onClick={()=>setcurrState('Login')} className='cursor-pointer'>Already have an account? <span className='hover:text-red-800 font-bold'>Login</span></p>
             </div>
         }
         <button className='bg-black text-white px-6 py-2 rounded mt-7 transition-all duration-300 hover:bg-gray-600 hover:scale-125'>{currState === 'Login' ? 'Sign In' : 'Sign Up'}</button>
