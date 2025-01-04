@@ -16,21 +16,11 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false)
-
-  //* Removing and adding dark class from elements
-  useEffect(() => {
-    if(darkMode){
-      document.documentElement.classList.add('dark')
-    }else{
-      document.documentElement.classList.remove('dark')
-    }
-  },[darkMode])
 
   return (
     <div className={`px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] pt-3 bg-white dark:bg-[red] text-white dark:text-white`}>
       <ToastContainer />
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <Navbar />
       <SearchBar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>

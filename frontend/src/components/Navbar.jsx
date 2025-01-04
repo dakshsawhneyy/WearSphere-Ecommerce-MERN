@@ -1,9 +1,9 @@
         import React, { useContext, useState } from "react";
         import { assets } from "../assets/frontend_assets/assets";
         import { Link, NavLink, useNavigate } from "react-router-dom";
-import { ShopContext } from "../context/ShopContext";
+        import { ShopContext } from "../context/ShopContext";
 
-        const Navbar = ({darkMode,setDarkMode}) => {
+        const Navbar = () => {
             const navigate = useNavigate();
             const [visible, setVisible] = useState(false)
 
@@ -33,7 +33,6 @@ import { ShopContext } from "../context/ShopContext";
                     </div>
                     <div className="flex items-center gap-5">
                         {/* Making dark mode button */}
-                        <button onClick={()=>setDarkMode(!darkMode)} className="hidden sm:block border rounded p-2 bg-white dark:bg-black text-black dark:text-white">{darkMode ? 'Enable Light Mode' : 'Enable Red Mode'}</button>
                         <img src={assets.search_icon} onClick={() => setShowSearch(!showSearch)} className="w-6 h-6 cursor-pointer" alt="" />
                         {/* DropDown on profile icon */}
                         <div className="relative group">
