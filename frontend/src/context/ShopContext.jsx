@@ -9,6 +9,7 @@ const ShopContextProvider = (props) => {
 
     const currency = '₹';
     const delivery_fee = 10;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState('');   /// making this state to change state of search when input is done in search
     const [showSearch, setShowSearch] = useState(false)   // making this to show and unshow search bar
     const [cartItems, setCartItems] = useState({});     // {} means emply object and making this state to store cart items data
@@ -98,7 +99,8 @@ const ShopContextProvider = (props) => {
         addToCart,
         getCartCount,
         updateQuantity,
-        getCartAmount
+        getCartAmount,
+        backendUrl
     }
 
     return (
