@@ -15,6 +15,8 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});     // {} means emply object and making this state to store cart items data
     // soring products in products state variable
     const [products, setProducts] = useState([])
+    // making state to store token for login
+    const [token, setToken] = useState('')
 
     const addToCart = async(itemId,size) => {
         // If size is not selected give an error
@@ -118,7 +120,8 @@ const ShopContextProvider = (props) => {
         getCartCount,
         updateQuantity,
         getCartAmount,
-        backendUrl
+        backendUrl,
+        token,setToken
     }
 
     return (
