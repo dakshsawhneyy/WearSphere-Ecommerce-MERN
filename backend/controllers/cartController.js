@@ -1,7 +1,7 @@
 import userModel from "../models/userModel.js"
 
 
-// add products to user cart
+// add products to user cart //! It is only used to add data in mongoDB
 const addToCart = async(req,res) => {
     try {
         const {userId, itemId, size} = req.body
@@ -66,5 +66,7 @@ const getUserCart = async(req,res) => {
         res.json({ success:false,message:error.message })
     }
 }
+
+//! Now we will link ths api with our frontend
 
 export { addToCart,updateCart,getUserCart }

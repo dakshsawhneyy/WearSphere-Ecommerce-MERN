@@ -40,6 +40,18 @@ const ShopContextProvider = (props) => {
             cartData[itemId][size] = 1;
         }
         setCartItems(cartData); //it means cartItems contains only id and size
+
+        //* If user is signed in call the cart api from backend
+        if(token){
+            try {
+                const response = await axios.post(backendUrl + '/api/cart/add',{itemId,size},{headers:{token}})  // due to this data will remain as it is
+                console.log(response.data)
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+            }
+        }
+
     }
 
     // making function for storing count in cart icon in navbar for how many products present in cart 
@@ -68,6 +80,14 @@ const ShopContextProvider = (props) => {
         cartData[itemId][size] = quantity;
 
         setCartItems(cartData);
+
+        try {
+            const response = await axios.post(backendUrl + '/api/cart/update',{itemId,size,quantity});
+            console.log(response.data)
+        } catch (error) {
+            console.log(error);
+            toast.error('error.message');
+        }
     }
 
     // A function to total amount of cart
