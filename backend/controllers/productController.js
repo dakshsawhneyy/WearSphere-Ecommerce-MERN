@@ -42,8 +42,6 @@ const addProduct = async(req,res) => {
             date: Date.now()
         }
 
-        console.log(productData)
-
         // to add data we have to import product model
         const product = new productModel(productData)
         await product.save()    // storing data in database
