@@ -82,7 +82,7 @@ const ShopContextProvider = (props) => {
         setCartItems(cartData);
 
         try {
-            const response = await axios.post(backendUrl + '/api/cart/update',{itemId,size,quantity});
+            const response = await axios.post(backendUrl + '/api/cart/update',{itemId,size,quantity},{headers:{token}});
             console.log(response.data)
         } catch (error) {
             console.log(error);
@@ -127,8 +127,7 @@ const ShopContextProvider = (props) => {
         }
     }
 
-    //* This fxn is used so that data can be stated in cart even when 
-    const getUserData = async(token) => {
+    const getUserCart = async(token) => {
         try {
             const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
             if(response.data.success){
@@ -140,6 +139,9 @@ const ShopContextProvider = (props) => {
         }
     }
 
+
+
+
     // it is used to list products fetched from api
     useEffect(() => {
         getProductData();
@@ -150,7 +152,7 @@ const ShopContextProvider = (props) => {
         // when we refresh page token is refreshed but token is in local storage so give that storage token to token state
         if(!token && localStorage.getItem('token')){
             setToken(localStorage.getItem('token'));
-            getUserData(localStorage.getItem('token'));
+            getUserCart(localStorage.getItem('token'))
         }
     },[])
 

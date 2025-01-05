@@ -1,6 +1,5 @@
 import userModel from "../models/userModel.js"
 
-
 // add products to user cart //! It is only used to add data in mongoDB
 const addToCart = async(req,res) => {
     try {
