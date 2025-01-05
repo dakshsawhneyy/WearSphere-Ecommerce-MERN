@@ -127,6 +127,19 @@ const ShopContextProvider = (props) => {
         }
     }
 
+    //* This fxn is used so that data can be stated in cart even when 
+    const getUserData = async(token) => {
+        try {
+            const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
+            if(response.data.success){
+                setCartItems(response.data.cartData)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
     // it is used to list products fetched from api
     useEffect(() => {
         getProductData();
@@ -137,6 +150,7 @@ const ShopContextProvider = (props) => {
         // when we refresh page token is refreshed but token is in local storage so give that storage token to token state
         if(!token && localStorage.getItem('token')){
             setToken(localStorage.getItem('token'));
+            getUserData(localStorage.getItem('token'));
         }
     },[])
 
