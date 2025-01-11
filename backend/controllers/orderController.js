@@ -1,8 +1,35 @@
 import orderModel from "../models/orderModel.js";
+import userModel from "../models/userModel.js";
 
 // Placing orders using COD
 const placeOrderCOD = async(req,res) => {
-
+    try {
+        const { userId,items,amount,address } = req.body;
+        
+        //* Make order data object as per orderModel
+        const orderData = {
+            userId,
+            items,
+            amount,
+            address,
+            paymentMethod: "COD",
+            payment:false,
+            date: Date.now()
+            
+        }
+        
+        const newOrder = new orderModel(orderData)
+        await newOrder.save()
+        
+        // After order is saved or placed, we need to reset user cartData
+        await userModel.findByIdAndUpdate(userId,{cartData:{}})
+        
+        res.json({success:true,message:"Order Placed"})
+    
+    } catch (error) {
+        res.json({success:false,message:error.message})
+        console.log(error)
+    }
 }
 
 // Placing orders using Stripe
