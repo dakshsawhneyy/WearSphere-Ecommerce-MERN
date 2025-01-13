@@ -11,7 +11,7 @@ return (
             {
                 products.slice(2,5).map((item,index) => (
                     <div className='flex sm:flex-row flex-col gap-3 sm:gap-0 items-center border-t '>
-                        <div key={index} className='flex gap-5 py-5 border-t min-w-[350px]'>
+                        <div key={item._id} className='flex gap-5 py-5 border-t min-w-[350px]'>
                             <div>
                                 <img src={item.image} className='w-16' alt="" />
                             </div>
@@ -25,7 +25,7 @@ return (
                                 <p>Date: <span>25 July, 2024</span></p>
                             </div>
                         </div>
-                        <div className='flex gap-10 mb-3 sm:gap-0 sm:mb-0 justify-between md:w-[50vw] pl-56'>
+                        <div className='flex gap-10 mb-3 sm:gap-0 sm:mb-0 justify-between md:w-[50vw] md:pl-56'>
                             <div className='flex items-center gap-2 mr-auto'>
                                 <span className='rounded-full h-4 w-4 bg-green-600'></span>
                                 <p className='text-lg whitespace-nowrap'>Ready to ship</p>

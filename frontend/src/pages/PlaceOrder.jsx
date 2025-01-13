@@ -5,6 +5,7 @@ import { assets } from '../assets/frontend_assets/assets'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext'
+import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
     const [method, setMethod] = useState('cod');    // making state for displaying green dot in front of payment method
@@ -34,6 +35,26 @@ const PlaceOrder = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        try {
+            let orderItems = [];    // in this array we will add all products from our cart
+            for(const items in cartItems){
+                for(const item in cartItems[items]){
+                    if(cartItems[items][item] > 0){     // it means item is in cart and quantity is > 0
+                        const itemInfo = structuredClone(products.find(product => product._id === items))   //* structured clone is used to make a copy or make a copy of items meaning any changes in itemInfo doesnt affect original cartItems and making a copy of product that matched by id of items and storing them in itemInfo variable
+                        if(itemInfo){
+                            itemInfo.size = item    // size means 'L' "M" etc
+                            itemInfo.quantity = cartItems[items][item]
+                            orderItems.push(itemInfo)
+                        }
+                    }
+                }
+            }
+            console.log(orderItems)
+            toast.success("Success")
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
     }
 
 return (
@@ -75,20 +96,20 @@ return (
                         </div>
                         {method == 'stripe' && <div className='w-2 h-2 rounded-full bg-green-500 ml-2'></div>}
                     </div>
-                    <div onClick={()=>setMethod('razor')} className='border flex sm:px-5 px-3 py-1 cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center flex-1'>
+                    <div onClick={()=>setMethod('razor')} className='border flex sm:px-5 px-1 py-1 cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center flex-1'>
                         <div>
-                            <img src={assets.razorpay_logo} className='w-28' alt="" />
+                            <img src={assets.razorpay_logo} className='sm:w-28 w-40' alt="" />
                         </div>
                         {method == 'razor' && <div className='w-2 h-2 rounded-full bg-green-500 ml-2'></div>}
                     </div>
                     <div onClick={()=>setMethod('cod')} className='active:bg-gray-300 border flex sm:px-5 px-2 py-1 justify-between cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center text-sm'>
-                        <p className='text-black text-lg font-semibold'>Cash On Delivery</p>
+                        <p className='text-black md:text-lg font-semibold'>Cash On Delivery</p>
                         {method == 'cod' && <div className='w-2 h-2 rounded-full bg-green-500 ml-2'></div>}
                     </div>
                 </div>
             </div>
             <div className='ml-auto mt-8'>
-                <button type="submit" onClick={()=>navigate('/orders')} className='bg-black text-gray-300 hover:bg-gray-300 hover:text-gray-800 hover:scale-110 hover:drop-shadow-2xl transition-all duration-300 px-4 py-2 rounded'>PLACE ORDER</button>
+                <button type="submit" className='bg-black text-gray-300 hover:bg-gray-300 hover:text-gray-800 hover:scale-110 hover:drop-shadow-2xl transition-all duration-300 px-4 py-2 rounded'>PLACE ORDER</button>
             </div>
         </div>
     </form>
