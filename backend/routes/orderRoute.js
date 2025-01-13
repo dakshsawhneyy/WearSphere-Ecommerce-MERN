@@ -16,6 +16,6 @@ orderRouter.post('/stripe',authUser,placeOrderStripe)   // we need token/userId 
 orderRouter.post('/razorpay',authUser,placeOrderRazorpay)
 
 // User features - frontend
-orderRouter.post('/userOrders',authUser,userOrders)
+orderRouter.post('/userorders',authUser,userOrders)
 
 export default orderRouter;

@@ -88,19 +88,19 @@ return (
                 <Title text1={'DELIVERY'} text2={'INFORMATION'}/>
             </div>
             <div className='flex flex-col mt-8 gap-5 text-black '>
-                <div className='flex justify-between flex-col lg:flex-row gap-5 md:gap-0'>
+                <div className='flex justify-between flex-col xl:flex-row gap-5 md:gap-0'>
                     <input type="text" onChange={onChangeHandler} name='firstName' value={formData.firstName} className='border py-2 px-5 text-lg rounded' placeholder='First name' required/>
-                    <input type="text" onChange={onChangeHandler} name='lastName' value={formData.lastName} className='border py-2 px-5 text-lg rounded md:mt-5 lg:mt-0' placeholder='Last name' required/>
+                    <input type="text" onChange={onChangeHandler} name='lastName' value={formData.lastName} className='border py-2 px-5 text-lg rounded md:mt-5 xl:mt-0' placeholder='Last name' required/>
                 </div>
                 <input type="text" onChange={onChangeHandler} name='email' value={formData.email} className='border py-2 px-5 text-lg rounded ' placeholder='Email address' required/>
                 <input type="text" onChange={onChangeHandler} name='street' value={formData.street} className='border py-2 px-5 text-lg rounded ' placeholder='Street' required/>
-                <div className='flex justify-between flex-col lg:flex-row gap-5 sm:gap-0'>
+                <div className='flex justify-between flex-col xl:flex-row gap-5 sm:gap-0'>
                     <input type="text" onChange={onChangeHandler} name='city' value={formData.city} className='border py-2 px-5 text-lg rounded' placeholder='City' required/>
-                    <input type="text" onChange={onChangeHandler} name='state' value={formData.state} className='border py-2 px-5 text-lg rounded md:mt-5 lg:mt-0' placeholder='State' required/>
+                    <input type="text" onChange={onChangeHandler} name='state' value={formData.state} className='border py-2 px-5 text-lg rounded md:mt-5 xl:mt-0' placeholder='State' required/>
                 </div>
-                <div className='flex justify-between flex-col lg:flex-row gap-5 sm:gap-0'>
+                <div className='flex justify-between flex-col xl:flex-row gap-5 sm:gap-0'>
                     <input type="text" onChange={onChangeHandler} name='zipcode' value={formData.zipcode} className='border py-2 px-5 text-lg rounded' placeholder='Zipcode' required/>
-                    <input type="text" onChange={onChangeHandler} name='country' value={formData.country} className='border py-2 px-5 text-lg rounded md:mt-5 lg:mt-0' placeholder='Country' required/>
+                    <input type="text" onChange={onChangeHandler} name='country' value={formData.country} className='border py-2 px-5 text-lg rounded md:mt-5 xl:mt-0' placeholder='Country' required/>
                 </div>
                 <input type="text" onChange={onChangeHandler} name='phone' value={formData.phone} className='border py-2 px-5 text-lg rounded' placeholder='Phone' required/>
             </div>
@@ -112,7 +112,7 @@ return (
             </div>
             <div className='sm:pl-28 flex flex-col'>
                 <Title text1={'PAYMENT'} text2={'METHOD'} />
-                <div className='flex flex-row sm:flex-col lg:flex-row gap-2 sm:gap-6 mt-8 justify-between'>
+                <div className='flex flex-row sm:flex-col xl:flex-row gap-2 sm:gap-6 mt-8 justify-between'>
                     <div onClick={()=>setMethod('stripe')} className='border flex px-5 py-1 cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center'>
                         <div className=''>
                             <img src={assets.stripe_logo} className='w-16' alt="" />

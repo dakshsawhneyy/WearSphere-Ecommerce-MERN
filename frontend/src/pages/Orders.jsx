@@ -1,15 +1,55 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Title from '../components/Title'
 import { ShopContext } from '../context/ShopContext'
+import { useState } from 'react';
+import axios from 'axios';
 
 const Orders = () => {
-    const { products,currency } = useContext(ShopContext);
+
+    const { backendUrl,token,currency } = useContext(ShopContext);
+
+    const [orderData, setOrderData] = useState([])
+
+    const loadOrderData = async() => {
+        try {
+            if(!token){
+                return null
+            }
+            
+            const response = await axios.post(backendUrl + '/api/order/userorders',{},{headers:{token}})
+            if(response.data.success){
+                let allOrderItem = [];
+                response.data.orders.map((order) => {
+                    // there is one more array in data of items name so we need one more mapping
+                    order.items.map((item) => {
+                        item['status'] = order.status;
+                        item['payment'] = order.payment;
+                        item['paymentMethod'] = order.paymentMethod;
+                        item['date'] = order.date;
+                        // Saving all these items in allOrderItems array
+                        allOrderItem.push(item);
+                    })
+                })
+                setOrderData(allOrderItem.reverse())    // doing reverse so that latest order will show on top
+                // console.log(allOrderItem)
+            }
+            //console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        loadOrderData()
+    }, [token])
+    
+
 return (
     <div className='w-full py-16 border-t-2 mt-2 flex flex-col'>
         <Title text1={'MY'} text2={'ORDERS'} />
         <div className='text-black'>
             {
-                products.slice(2,5).map((item,index) => (
+                orderData.map((item,index) => (
                     <div className='flex sm:flex-row flex-col gap-3 sm:gap-0 items-center border-t '>
                         <div key={item._id} className='flex gap-5 py-5 border-t min-w-[350px]'>
                             <div>
