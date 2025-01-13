@@ -49,7 +49,15 @@ const allOrders = async(req,res) => {
 
 // User Order data for frontend
 const userOrders = async(req,res) => {
-
+    try {
+        // fetching userIc from req.body
+        const { userId } =  req.body
+        const orders = await orderModel.find({userId})
+        res.json({success:true,orders})
+    } catch (error) {
+        res.json({success:false,message:error.message})
+        console.log(error)
+    }
 }
 
 // update order status from admin panel. Only admin can update the status
