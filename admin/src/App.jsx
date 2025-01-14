@@ -36,7 +36,7 @@ const App = () => {
             <Routes>
               <Route path='/add' element={<Add token={token}/>}/> {/*We need token to authenticate in add.jsx*/}
               <Route path='/list' element={<List token={token}/>}/>
-              <Route path='/orders' element={<Orders/>}/>
+              <Route path='/orders' element={<Orders token={token}/>}/>
             </Routes>
           </div>
         </div>

@@ -62,8 +62,8 @@ return (
                 list.map((item,index)=>(
                     <div key={index} className='grid grid-cols-[1fr_3fr_1fr_1fr_1fr] bg-white border-b-2 border-l-2 border-r-2 p-2 drop-shadow-md items-center my-2'>
                         <img src={item.image[0]} className='w-16 cover' alt="" />
-                        <p>{item.name}</p>
-                        <p>{item.category}</p>
+                        <p className='text-xs sm:text-md pl-3'>{item.name}</p>
+                        <p className='text-xs sm:text-md'>{item.category}</p>
                         <p>{currency}{item.price}</p>
                         <p onClick={()=>removeProduct(item._id)} className='text-center bg-red-600 rounded h-8 flex w-8 ml-auto mr-auto justify-center items-center text-white cursor-pointer'>X</p>
                     </div>
