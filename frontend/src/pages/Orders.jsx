@@ -22,16 +22,16 @@ const Orders = () => {
                 response.data.orders.map((order) => {
                     // there is one more array in data of items name so we need one more mapping
                     order.items.map((item) => {
-                        item['status'] = order.status;
-                        item['payment'] = order.payment;
-                        item['paymentMethod'] = order.paymentMethod;
-                        item['date'] = order.date;
+                        item['status'] = order.status
+                        item['payment'] = order.payment
+                        item['paymentMethod'] = order.paymentMethod
+                        item['date'] = order.date
                         // Saving all these items in allOrderItems array
-                        allOrderItem.push(item);
+                        allOrderItem.push(item)
                     })
                 })
                 setOrderData(allOrderItem.reverse())    // doing reverse so that latest order will show on top
-                // console.log(allOrderItem)
+                console.log(allOrderItem)
             }
             //console.log(response.data)
         } catch (error) {
@@ -42,7 +42,6 @@ const Orders = () => {
     useEffect(() => {
         loadOrderData()
     }, [token])
-    
 
 return (
     <div className='w-full py-16 border-t-2 mt-2 flex flex-col'>
@@ -50,28 +49,29 @@ return (
         <div className='text-black'>
             {
                 orderData.map((item,index) => (
-                    <div className='flex sm:flex-row flex-col gap-3 sm:gap-0 items-center border-t '>
-                        <div key={item._id} className='flex gap-5 py-5 border-t min-w-[350px]'>
+                    <div key={index} className='flex sm:flex-row flex-col gap-3 sm:gap-0 items-center border-t '>
+                        <div className='flex gap-5 py-5 border-t min-w-[350px]'>
                             <div>
-                                <img src={item.image} className='w-16' alt="" />
+                                <img src={item.image[0]} className='w-20 h-20' alt="" />
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <p>{item.name}</p>
                                 <div className='flex gap-5'>
                                     <p>{currency}{item.price}</p>
-                                    <p>Quantity: 1</p>
-                                    <p>Size: M</p>
+                                    <p>Quantity: {item.quantity}</p>
+                                    <p>Size: {item.size}</p>
                                 </div>
-                                <p>Date: <span>25 July, 2024</span></p>
+                                <p className='text-sm'>Date: <span className='text-gray-500'>{new Date(item.date).toDateString()}</span></p>
+                                <p className='text-sm'>Payment: <span className='text-gray-500'>{item.paymentMethod}</span></p>
                             </div>
                         </div>
                         <div className='flex gap-10 mb-3 sm:gap-0 sm:mb-0 justify-between md:w-[50vw] md:pl-56'>
                             <div className='flex items-center gap-2 mr-auto'>
                                 <span className='rounded-full h-4 w-4 bg-green-600'></span>
-                                <p className='text-lg whitespace-nowrap'>Ready to ship</p>
+                                <p className='text-lg whitespace-nowrap'>{item.status}</p>
                                 </div>
                             <div className=''>
-                                <button className='border px-3 py-2 bg-green-900 rounded text-white'>TRACK ORDER</button>
+                                <button onClick={loadOrderData} className='border px-3 py-2 bg-green-900 rounded text-white'>TRACK ORDER</button>
                             </div>
                         </div>
                         
