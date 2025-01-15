@@ -28,6 +28,20 @@ const Orders = ({token}) => {
         }
     }
 
+    const statusHandler = async(event,orderId) => {
+        try {
+            const response = await axios.post(backend_url + '/api/order/status',{orderId, status:event.target.value},{headers:{token}}) // it is admin feature so we require token in this
+            if (response.data.success) {
+                await fetchAllOrders();
+            }else{
+                console.log(error)
+            }
+        } catch (error) {
+            toast.error(response.data.message)
+            console.log(error)
+        }
+    }
+
     useEffect(()=>{
         fetchAllOrders();   // run this fxn whenever page gets loaded
     },[])
@@ -65,7 +79,7 @@ return (
                             <p>Date : {new Date(order.date).toLocaleDateString()}</p>
                         </div>
                         <p className='text-black font-bold'>{currency}{order.amount}</p>
-                        <select className='py-2 px-1 border font-semibold'>
+                        <select onChange={(event) => statusHandler(event,order._id)} value={order.status} className='py-2 px-1 border font-semibold'>
                             <option value="Order Placed">Order Placed</option>
                             <option value="Packing">Packing</option>
                             <option value="Shipped">Shipped</option>

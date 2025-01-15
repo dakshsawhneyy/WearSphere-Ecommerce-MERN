@@ -53,7 +53,7 @@ const allOrders = async(req,res) => {
     }
 }
 
-// User Order data for frontend
+// User Order data for frontend // view all orders of user on frontend
 const userOrders = async(req,res) => {
     try {
         // fetching userIc from req.body
@@ -66,9 +66,18 @@ const userOrders = async(req,res) => {
     }
 }
 
-// update order status from admin panel. Only admin can update the status
+// update order status from admin panel. Only admin can update the status   // *Shows current status and change status to mongoDB from admin
 const updateStatus = async(req,res) => {
-
+    try {
+        // get  orderId and order status from req.body
+        const { orderId,status } = req.body     // we will get orderId and status when we will hit the api //* we add these things in out api so when we hit api we will get it automatically
+        
+        await orderModel.findByIdAndUpdate(orderId,{ status })  // whatever status we will provide here will be automatically gets saved in database for that orderId
+        res.json({success:true,message:'Status Updated'})
+    } catch (error) {
+        res.json({success:false,message:error.message})
+        console.log(error)
+    }
 }
 
 export { placeOrderCOD,placeOrderRazorpay,placeOrderStripe,allOrders,userOrders,updateStatus }
