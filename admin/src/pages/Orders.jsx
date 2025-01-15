@@ -34,12 +34,12 @@ const Orders = ({token}) => {
 
 return (
     <div>
-        <h3>Order Page</h3>
-        <div>
+        <h3 className='text-xl'>Order Page</h3>
+        <div className=''>
             {
                 orders.map((order,index) => (
-                    <div key={index}>
-                        <img src={assets.parcel_icon} alt="" />
+                    <div key={index} className='border text-sm sm:text-xs lg:text-base gap-5 mt-5 flex flex-col sm:flex-row p-3 sm:p-8 justify-between md:items-center'>
+                        <img src={assets.parcel_icon} className='w-20 md:w-auto' alt="" />
                         <div>
                             { /* orders have  items in that and then name so making one more map*/}
                             <div className=''>
@@ -51,21 +51,21 @@ return (
                                     }
                                 })}
                             </div>
-                            <p>{order.address.firstName + " " + order.address.lastName}</p>
+                            <p className='md:my-3 font-semibold text-black'>Name: {order.address.firstName + " " + order.address.lastName}</p>
                             <div>
                                 <p>Street : {order.address.street + ","}</p>
                                 <p>{order.address.city + ", " + order.address.state + ", " + order.address.country + ", " + order.address.zipcode}</p>
                             </div>
-                            <p>{order.address.phone}</p>
+                            <p>Mobile Number: +91 {order.address.phone}</p>
                         </div>
                         <div>
                             <p>Items : {order.items.length} </p>
-                            <p>Method : {order.paymentMethod}</p>
-                            <p>Payment : {order.payment ? 'Done' : 'Pending'}</p>
+                            <p className='md:my-2'>Method : {order.paymentMethod}</p>
+                            <p className='md:my-2'>Payment : {order.payment ? 'Done' : 'Pending'}</p>
                             <p>Date : {new Date(order.date).toLocaleDateString()}</p>
                         </div>
-                        <p>{currency}{order.amount}</p>
-                        <select>
+                        <p className='text-black font-bold'>{currency}{order.amount}</p>
+                        <select className='py-2 px-1 border font-semibold'>
                             <option value="Order Placed">Order Placed</option>
                             <option value="Packing">Packing</option>
                             <option value="Shipped">Shipped</option>
