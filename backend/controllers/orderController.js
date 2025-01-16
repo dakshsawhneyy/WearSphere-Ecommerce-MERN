@@ -102,6 +102,27 @@ const placeOrderStripe = async(req,res) => {
     }
 }
 
+// a function to verify if payment is successful or not in stripe
+const verifyStripe = async(req,res) => {
+    
+    const { orderId,success,userId } = req.body;
+    
+    try {
+        if(success === "true"){
+            await orderModel.findByIdAndDelete(orderId, {payment:true}) // make this true in order model
+            // once payment gets verified then clear the cart data of user
+            await userModel.findByIdAndUpdate(userId,{cartData: {}})
+            res.json({success:true});
+        }else{  // if success is not true then delete that order
+            await orderModel.findByIdAndDelete(orderId)
+            res.json({success:false})
+        }
+    } catch (error) {
+        res.json({success:false,message:error.message})
+        console.log(error)
+    }
+}
+
 // Placing orders using RazerPay
 const placeOrderRazorpay = async(req,res) => {
 
@@ -145,4 +166,4 @@ const updateStatus = async(req,res) => {
     }
 }
 
-export { placeOrderCOD,placeOrderRazorpay,placeOrderStripe,allOrders,userOrders,updateStatus }
+export { placeOrderCOD,placeOrderRazorpay,placeOrderStripe,allOrders,userOrders,updateStatus,verifyStripe }
