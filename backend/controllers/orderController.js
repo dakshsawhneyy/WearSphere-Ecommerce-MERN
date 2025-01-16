@@ -88,7 +88,7 @@ const placeOrderStripe = async(req,res) => {
         
         // by these line items, we can create session where we will define success and failure url
         const session = await stripe.checkout.sessions.create({
-            success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
+            success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,   // we added /verify to make a new route verify for success page
             cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
             line_items,
             mode: 'payment',
@@ -109,7 +109,7 @@ const verifyStripe = async(req,res) => {
     
     try {
         if(success === "true"){
-            await orderModel.findByIdAndDelete(orderId, {payment:true}) // make this true in order model
+            await orderModel.findByIdAndUpdate(orderId, { payment:true }) // make this true in order model
             // once payment gets verified then clear the cart data of user
             await userModel.findByIdAndUpdate(userId,{cartData: {}})
             res.json({success:true});
