@@ -70,6 +70,10 @@ const PlaceOrder = () => {
                         toast.error(response.data.message)
                     }
                     break;
+                // Api calls for Stripe
+                case 'stripe':
+                    
+                    break;
                 default:
                     break;
             }
