@@ -173,6 +173,21 @@ const placeOrderRazorpay = async(req,res) => {
     }
 }
 
+// function to verify RazorPay payment
+const verifyRazorpay = async(req,res) => {
+    try {
+        
+        const{ userId, razorpay_order_id } = req.body;  // we will get this razor_id in console after success of payment
+        
+        const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)    //* This razorId is used to fetch that order or to retrieve it and storing it in orderIndo variable
+        console.log(orderInfo)
+        
+    } catch (error) {
+        res.json({success:false, message:error.message})
+        console.log(error)
+    }
+}
+
 // All Orders data for admin panel
 const allOrders = async(req,res) => {
     try {
@@ -211,4 +226,4 @@ const updateStatus = async(req,res) => {
     }
 }
 
-export { placeOrderCOD,placeOrderRazorpay,placeOrderStripe,allOrders,userOrders,updateStatus,verifyStripe }
+export { placeOrderCOD,placeOrderRazorpay,placeOrderStripe,allOrders,userOrders,updateStatus,verifyStripe,verifyRazorpay }
