@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe'
+import razorpay from 'razorpay'
 
 // creating global variables for stripe
 const currency = 'inr';
@@ -8,6 +9,12 @@ const deliveryCharge = 10;
 
 // gateway initialisation   // we can use this stripe in this project
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)    // we get secret key from environment variable
+
+// initialisation of razorpay gateway
+const razorpayInstance = new razorpay({
+    key_id : process.env.RAZORPAY_KEY_ID,
+    key_secret : process.env.RAZORPAY_KEY_SECRET
+})
 
 // Placing orders using COD
 const placeOrderCOD = async(req,res) => {
@@ -125,7 +132,45 @@ const verifyStripe = async(req,res) => {
 
 // Placing orders using RazerPay
 const placeOrderRazorpay = async(req,res) => {
-
+    try {
+        // ? most will be same as stripe payment
+        // we need product data from req.body
+        const { userId,items,amount,address } = req.body;
+        
+        //* Make order data object as per orderModel and saving in database
+        const orderData = {
+            userId,
+            items,
+            amount,
+            address,
+            paymentMethod: "Razorpay",
+            payment:false,
+            date: Date.now()
+        }
+        
+        const newOrder = new orderModel(orderData)
+        await newOrder.save()   // saving this in mongoDB
+        
+        // We will create option with which we will execute payment of razorpay     //* In stripe it was lineItems and razorPay it is options
+        const options = {
+            amount: amount * 100,
+            currency: currency.toUpperCase(),    // In razorPay we need currency in upper case
+            receipt: newOrder._id.toString()
+        }
+        
+        //* by these options, we will create new order of razorPay
+        await razorpayInstance.orders.create(options,(error,order) => {
+            if(error){
+                console.log(error)
+                return res.json({success:false, message:error})
+            }
+            res.json({success:true,order})
+        })
+        
+    } catch (error) {
+        res.json({success:false,message:error.message})
+        console.log(error)
+    }
 }
 
 // All Orders data for admin panel
