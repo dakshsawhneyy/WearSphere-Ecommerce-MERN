@@ -3,7 +3,7 @@ import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/frontend_assets/assets'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -32,6 +32,24 @@ const PlaceOrder = () => {
         const value = e.target.value;
         
         setFormData(data => ({...data,[name]:value}))
+    }
+
+    // creating a fxn we will take input of all details in console.log(razorpay) to execute razorpay payment
+    const initPay = (order) => {    // we will send this object as a parameter // Can see doin console.log(responseRazorpay.data)
+        const options = {   
+            key: import.meta.env.VITE_RAZORPAY_KEY_ID,  // we require razorId from env
+            amount: order.amount,
+            currency: order.currency,
+            name: 'Order Payment',
+            description: 'Order Payment',
+            order_id: order.id,
+            receipt: order.receipt,
+            handler: async(response) => {   // After execution of payment this handler will be executed
+                console.log(response)
+            } 
+        }
+        const rzp = new window.Razorpay(options)    //* It creates a popup where we will execute the payment
+        rzp.open()  
     }
 
     const onSubmitHandler = async(e) => {
@@ -79,6 +97,14 @@ const PlaceOrder = () => {
                         window.location.replace(session_url)    // replace url with session url
                     }else{
                         toast.error(responseStripe.data.message)
+                    }
+                    break;
+                // Api Calls for RazorPay
+                case 'razorpay':
+                    const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, {headers:{token}})
+                    if(responseRazorpay.data.success){
+                        console.log(responseRazorpay.data)
+                        initPay(responseRazorpay.data.order)    // .order daalna mt bhulna😭😭
                     }
                     break;
                 default:
@@ -130,11 +156,11 @@ return (
                         </div>
                         {method == 'stripe' && <div className='w-2 h-2 rounded-full bg-green-500 ml-2'></div>}
                     </div>
-                    <div onClick={()=>setMethod('razor')} className='border flex sm:px-5 px-1 py-1 cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center flex-1'>
+                    <div onClick={()=>setMethod('razorpay')} className='border flex sm:px-5 px-1 py-1 cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center flex-1'>
                         <div>
                             <img src={assets.razorpay_logo} className='sm:w-28 w-40' alt="" />
                         </div>
-                        {method == 'razor' && <div className='w-2 h-2 rounded-full bg-green-500 ml-2'></div>}
+                        {method == 'razorpay' && <div className='w-2 h-2 rounded-full bg-green-500 ml-2'></div>}
                     </div>
                     <div onClick={()=>setMethod('cod')} className='active:bg-gray-300 border flex sm:px-5 px-2 py-1 justify-between cursor-pointer hover:bg-gray-300 transition-all duration-500 hover:scale-125 rounded items-center text-sm'>
                         <p className='text-black md:text-lg font-semibold'>Cash On Delivery</p>

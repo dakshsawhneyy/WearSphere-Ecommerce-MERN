@@ -159,7 +159,7 @@ const placeOrderRazorpay = async(req,res) => {
         }
         
         //* by these options, we will create new order of razorPay
-        await razorpayInstance.orders.create(options,(error,order) => {
+        await razorpayInstance.orders.create(options, (error,order) => {
             if(error){
                 console.log(error)
                 return res.json({success:false, message:error})
