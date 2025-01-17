@@ -180,8 +180,14 @@ const verifyRazorpay = async(req,res) => {
         const{ userId, razorpay_order_id } = req.body;  // we will get this razor_id in console after success of payment
         
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)    //* This razorId is used to fetch that order or to retrieve it and storing it in orderIndo variable
-        console.log(orderInfo)
         
+        if(orderInfo.status === 'paid'){    // it means payment is successful
+            await orderModel.findByIdAndUpdate(orderInfo.receipt,{payment:true})    // we have stored orderId in receipt in orderInfo   // check in consoleLog
+            await userModel.findByIdAndUpdate(userId,{cartData:{}})
+            res.json({success:true, message:"Payment Successful"})
+        }else{
+            res.json({success:false, message:"Payment Failed"})
+        }
     } catch (error) {
         res.json({success:false, message:error.message})
         console.log(error)
