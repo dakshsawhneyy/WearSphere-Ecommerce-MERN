@@ -45,7 +45,17 @@ const PlaceOrder = () => {
             order_id: order.id,
             receipt: order.receipt,
             handler: async(response) => {   // After execution of payment this handler will be executed
-                console.log(response)
+                console.log(response)   // we will get razorpay_id as response in console log which will be furthur proceeded in api
+                try {
+                    const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay',response,{headers:{token}})  //! This data is used when we want to extract only data not headers ot status something like that. if you want to extract that then use traditional response method but this is more consise if you just wanna extract data 
+                    if(data.success){
+                        navigate('/orders')
+                        setCartItems({});
+                    }
+                } catch (error) {
+                    toast.error(error)
+                    console.log(error)
+                }
             } 
         }
         const rzp = new window.Razorpay(options)    //* It creates a popup where we will execute the payment
