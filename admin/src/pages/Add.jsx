@@ -143,7 +143,7 @@ const Add = ({token}) => {
       </div>
 
       <div className='flex mt-3 gap-2'>
-        <input onChange={()=>setBestSeller(prev => !prev)} checked={bestSeller} type="checkbox" />  {/* On change make if it is true make it false and vice versa */}
+        <input onChange={()=>setBestSeller(prev => !prev)} checked={bestSeller} type="checkbox" id='bestseller' />  {/* On change make if it is true make it false and vice versa */}
         <p className=''>Add to BestSeller</p>
       </div>
 

@@ -22,12 +22,12 @@ return (
                 <h2 className='text-gray-700 font-semibold text-xl'>GET IN TOUCH</h2>
                 <div className='text-gray-500 mt-5'>
                     <p>+1-212-456-7890</p>
-                    <p>contact@foreveryyou.com</p>
+                    <p>contact@wearsphere.com</p>
                 </div>
             </div>
         </div>
         <hr className='bg-gray-500 my-5'/>
-        <p className='text-gray-700 text-center text-xs sm:text-s font-semibold'>Copyright 2024@forever.com - All Right Reserved.</p>
+        <p className='text-gray-700 text-center text-xs sm:text-s font-semibold'>Copyright 2024@wearsphere.com - All Right Reserved.</p>
     </div>
 )
 }

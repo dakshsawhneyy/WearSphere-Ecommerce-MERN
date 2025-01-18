@@ -31,7 +31,7 @@ const Orders = () => {
                     })
                 })
                 setOrderData(allOrderItem.reverse())    // doing reverse so that latest order will show on top
-                console.log(allOrderItem)
+                // console.log(allOrderItem)
             }
             //console.log(response.data)
         } catch (error) {

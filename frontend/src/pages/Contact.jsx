@@ -15,13 +15,13 @@ return (
                 <p className='text-gray-800 font-semibold'>Our Store</p>
                 <div className='text-gray-600'>
                     <p>54709 Willms Station</p>
-                    <p>Suite 350, Washington, USA</p>
+                    <p>Suite 350, Jammu, Jammu And Kasmir</p>
                 </div>
                 <div className='text-gray-600'>
                     <p>Tel: (415) 555-0132</p>
-                    <p>Email: admin@forever.com</p>
+                    <p>Email: admin@wearsphere.com</p>
                 </div>
-                <p className='text-gray-800 font-semibold'>Careers at Forever</p>
+                <p className='text-gray-800 font-semibold'>Careers at WearSphere</p>
                 <div className='text-gray-600'>
                     <p>Learn more about our teams and job opening</p>
                 </div>

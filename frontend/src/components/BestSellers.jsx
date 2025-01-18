@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { products } from '../assets/frontend_assets/assets'
+import React, { useContext, useEffect, useState } from 'react'
 import Title from './Title'
 import ProductItems from './ProductItems'
+import { ShopContext } from '../context/ShopContext'
 
 const BestSellers = () => {
+    const { products } = useContext(ShopContext)
     const [bestSeller, setBestSeller] = useState([])
-
+    console.log(products)
     useEffect(()=>{
-        const bestProducts = products.filter((item)=> (item.bestseller))
-        setBestSeller(bestProducts.slice(0,5))
+        if (products.length > 0) {
+            const bestProducts = products.filter((item) => item.bestseller); // Filtering best sellers
+            setBestSeller(bestProducts.slice(0, 5)); // Limiting to 5 items
+        }
     },[products])
 
 return (
@@ -20,7 +23,7 @@ return (
         <div className='grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
             {
                 bestSeller.map((item,index) => (
-                    <ProductItems key={index} name={item.name} price={item.price} image={item.image} />
+                    <ProductItems key={index} name={item.name} price={item.price} image={item.image} id={item._id} />
                 ))
             }
         </div>

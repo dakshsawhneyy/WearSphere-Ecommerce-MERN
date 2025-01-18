@@ -45,7 +45,7 @@ const PlaceOrder = () => {
             order_id: order.id,
             receipt: order.receipt,
             handler: async(response) => {   // After execution of payment this handler will be executed
-                console.log(response)   // we will get razorpay_id as response in console log which will be furthur proceeded in api
+                // console.log(response)   // we will get razorpay_id as response in console log which will be furthur proceeded in api
                 try {
                     const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay',response,{headers:{token}})  //! This data is used when we want to extract only data not headers ot status something like that. if you want to extract that then use traditional response method but this is more consise if you just wanna extract data 
                     if(data.success){
@@ -90,7 +90,7 @@ const PlaceOrder = () => {
                 // Api calls for COD
                 case 'cod':
                     const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers:{token}})
-                    console.log(response.data)
+                    // console.log(response.data)
                     if (response.data.success) {
                         setCartItems({})    // clearing cart items when order is placed
                         navigate('/orders')
@@ -113,7 +113,7 @@ const PlaceOrder = () => {
                 case 'razorpay':
                     const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, {headers:{token}})
                     if(responseRazorpay.data.success){
-                        console.log(responseRazorpay.data)
+                        // console.log(responseRazorpay.data)
                         initPay(responseRazorpay.data.order)    // .order daalna mt bhulna😭😭
                     }
                     break;

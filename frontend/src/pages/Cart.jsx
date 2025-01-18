@@ -25,7 +25,7 @@ const Cart = () => {
                 }
             }
         }
-        console.log(tempData)
+        // console.log(tempData)
         setCartData(tempData);
         }
     },[cartItems])

@@ -32,7 +32,7 @@ const Login = () => {
             }else{
                 // We will call login api
                 const response = await axios.post(backendUrl + '/api/user/login',{ email,password })
-                console.log(response.data)
+                // console.log(response.data)
                 if(response.data.success){
                     setToken(response.data.token)
                     // store token in local storage

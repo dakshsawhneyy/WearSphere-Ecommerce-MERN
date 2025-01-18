@@ -41,7 +41,7 @@ const List = ({token}) => {
 
     useEffect(() => {
         fetchList();
-        console.log(token)
+        // console.log(token)
     }, [])
 
 return (

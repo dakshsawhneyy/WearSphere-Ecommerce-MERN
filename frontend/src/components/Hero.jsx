@@ -3,8 +3,8 @@ import { assets } from '../assets/frontend_assets/assets'
 
 const Hero = () => {
 return (
-    <div className='flex flex-col sm:flex-row border-2 rounded border-gray-400 items-center my-10'>
-        <div className='sm:w-1/2 w-full flex flex-col items-center text-[#414141] dark:text-white'>
+    <div className='flex flex-col sm:flex-row border-2 rounded border-gray-400 items-center my-10 bg-gray-100'>
+        <div className='sm:w-1/2 w-full flex flex-col items-center text-[#414141] '>
             <div className='flex flex-col py-10 sm:py-0 gap-2'>
                 <div className='flex items-center gap-3'>
                     <hr className='w-12 h-0.5 border-none rounded bg-[#414141]'></hr>
@@ -17,7 +17,7 @@ return (
                 </div>
             </div>
         </div>
-        <img src={assets.hero_img} className='sm:w-1/2 w-full' alt="" />
+        <img src={assets.hero_img} className='sm:w-1/2 w-full h-3/4' alt="" />
     </div>
 )
 }

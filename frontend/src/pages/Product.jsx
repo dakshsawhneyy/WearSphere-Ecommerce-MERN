@@ -32,10 +32,10 @@ const Product = () => {
 // agr product ka data mil gya toh show krdo wrna data fetch na hua ya other issue hua toh blank white screen show krdo
 return productData ? (
     <div className='border-t-2 mt-3'>
-
+        
         {/* Products Data */}
         <div className=' flex sm:flex-row flex-col pt-8 gap-16'>
-
+        
             {/* --------Product Images---------- */}
             <div className='flex mt-4 flex-1 flex-col-reverse sm:flex-row gap-8'>
                 <div className='flex justify-between w-auto sm:justify-normal flex-row sm:flex-col overflow-x-auto sm:overflow-y-scroll gap-2'>

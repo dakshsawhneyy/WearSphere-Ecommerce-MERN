@@ -98,7 +98,7 @@ return (
                 <p className='font-bold'>CATEGORIES</p>
                 <p className='flex gap-3'><input type="checkbox" className='cursor-pointer' onChange={toggleCategory} value={'Men'} />MEN</p>
                 <p className='flex gap-3'><input type="checkbox" className='cursor-pointer' onChange={toggleCategory} value={'Women'}/>WOMEN</p>
-                <p className='flex gap-3'><input type="checkbox" className='cursor-pointer' onChange={toggleCategory} value={'Kids'} />KIDS</p>
+                <p className='flex gap-3'><input type="checkbox" className='cursor-pointer' onChange={toggleCategory} value={'kids'} />KIDS</p>
             </div>
             <div className={`border flex flex-col gap-3 p-3 mt-5 ${showFilter ? '' : 'hidden'}`}>
                 <p className='font-bold'>TYPE</p>
