@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+  backend:
+    build:
+      context: ./backend
+    container_name: wearsphere-backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    env_file:
+      - ./backend/.env
+  frontend:
+    build:
+      context: ./frontend
+    container_name: wearsphere-frontend
+    ports:
+      - "5173:5173"
+    env_file:
+      - ./frontend/.env
+
+volumes:
+  mongo-data:
