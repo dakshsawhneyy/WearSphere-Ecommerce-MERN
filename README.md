@@ -2,6 +2,9 @@
 
 **WearSphere** is a modern, full-featured e-commerce web app built using the **MERN stack**. It includes a customer-facing frontend, a powerful admin dashboard, secure JWT authentication, **dual payment gateway support** via **Stripe and Razorpay**, and RESTful APIs — all ready for production and CI/CD deployment.
 
+![image](https://github.com/user-attachments/assets/d621c09e-3bc4-432c-8449-54af16066e5b)
+![image](https://github.com/user-attachments/assets/f7f73c43-6c50-43c7-88e5-919f4a75fa36)
+![image](https://github.com/user-attachments/assets/3a56ed7f-a284-4c4d-9a4a-7da2ee6219d6)
 
 ---
 ### Live Demo
