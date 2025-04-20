@@ -1,25 +1,25 @@
-# 🛒 WearSphere - Full-Stack E-commerce Website (MERN)
+#  WearSphere - Full-Stack E-commerce Website (MERN)
 
 **WearSphere** is a modern, full-featured e-commerce web app built using the **MERN stack**. It includes a customer-facing frontend, a powerful admin dashboard, secure JWT authentication, **dual payment gateway support** via **Stripe and Razorpay**, and RESTful APIs — all ready for production and CI/CD deployment.
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 👤 User Panel (`frontend/`)
+### User Panel (`frontend/`)
 - Browse products by category
 - Add/remove items from cart
 - Register/Login with JWT
 - Checkout and pay using Stripe or Razorpay
 - Order history and details
 
-### 🛠️ Admin Panel (`admin/`)
+### Admin Panel (`admin/`)
 - Login as admin
 - Add, update, and delete products
 - Manage users and orders
 - View revenue and order analytics
 
-### 🔐 Backend (`backend/`)
+### Backend (`backend/`)
 - REST APIs using Express
 - MongoDB with Mongoose
 - JWT-based authentication
@@ -29,7 +29,7 @@
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Layer        | Technologies                               |
 |--------------|------------------------------------------- |
@@ -42,10 +42,19 @@
 
 ---
 
-## ⚙️ Local Setup
+## Local Setup
 
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/dakshsawhneyy/WearSphere-Ecommerce-MERN.git
 cd WearSphere-Ecommerce-MERN
+```
+
+### 2. Install dependencies
+```bash
+cd frontend && npm install
+cd ../admin && npm install
+cd ../backend && npm install
+```
+
 
