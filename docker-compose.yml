@@ -8,6 +8,8 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    networks:
+      - frontend_network  # Add to the same network as frontend and backend
   backend:
     build:
       context: ./backend
@@ -18,6 +20,8 @@ services:
       - mongo
     env_file:
       - ./backend/.env
+    networks:
+      - frontend_network  # Add to the same network as frontend and backend
   frontend:
     build:
       context: ./frontend
@@ -26,6 +30,22 @@ services:
       - "5173:5173"
     env_file:
       - ./frontend/.env
+    networks:
+      - frontend_network  # Add to the same network as frontend and backend
+  admin:
+    build:
+      context: ./admin
+    container_name: wearsphere-admin
+    ports:
+      - "5174:5174"
+    env_file:
+      - ./admin/.env
+    networks:
+      - frontend_network  # Add to the same network as frontend and backend
 
 volumes:
   mongo-data:
+
+networks:
+  frontend_network:
+    driver: bridge
