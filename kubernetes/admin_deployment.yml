@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-deployment
+  namespace: wearsphere
+  labels:
+    app: admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      containers:
+      - name: admin
+        image: dakshsawhneyy/wearsphere-admin
+        ports:
+        - containerPort: 5174
+        env:
+        - name: VITE_BACKEND_URL
+          value: "http://13.233.88.144:4000"
