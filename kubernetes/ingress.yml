@@ -4,21 +4,23 @@ metadata:
   name: wearsphere-ingress
   namespace: wearsphere
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
 spec:
-  ingressClassName: loadbalancer
+  ingressClassName: alb
   rules:
     - host: wearsphere.cctlds.online
       http:
         paths:
-          - path: /frontend
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: frontend-service
                 port:
                   number: 5173
-          - path: /backend
+          - path: /api
             pathType: Prefix
             backend:
               service:

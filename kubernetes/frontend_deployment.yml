@@ -22,6 +22,6 @@ spec:
         - containerPort: 5173
         env:
         - name: VITE_BACKEND_URL
-          value: "http://13.233.88.144:4000"
+          value: "http://backend-service:4000"
         - name: VITE_RAZORPAY_KEY_ID
           value: "your_razorpay_key_id"

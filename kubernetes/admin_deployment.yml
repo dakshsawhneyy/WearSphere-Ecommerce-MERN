@@ -22,4 +22,4 @@ spec:
         - containerPort: 5174
         env:
         - name: VITE_BACKEND_URL
-          value: "http://13.233.88.144:4000"
+          value: "http://backend-service:4000"

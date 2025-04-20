@@ -22,7 +22,7 @@ spec:
         - containerPort: 4000
         env:
         - name: MONGODB_URI
-          value: "mongodb://mongo:27017/e-commerce_mern"
+          value: "mongodb://mongo-service:27017/e-commerce_mern"
         - name: CLOUDINARY_API_KEY
           value: "dummy_cloudinary_api_key"
         - name: CLOUDINARY_SECRET_KEY
