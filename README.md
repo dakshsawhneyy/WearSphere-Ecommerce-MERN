@@ -2,6 +2,10 @@
 
 **WearSphere** is a modern, full-featured e-commerce web app built using the **MERN stack**. It includes a customer-facing frontend, a powerful admin dashboard, secure JWT authentication, **dual payment gateway support** via **Stripe and Razorpay**, and RESTful APIs — all ready for production and CI/CD deployment.
 
+
+---
+### Live Demo
+# Frontend: https://wear-sphere-frontend.vercel.app/
 ---
 
 ##  Features
@@ -108,16 +112,16 @@ In the frontend/ directory, run:
 ```bash
 npm run dev
 ```
-This will start the frontend on http://localhost:3000.
+This will start the frontend on http://localhost:5173.
 
 # 3. Start Admin Panel:
 In the admin/ directory, run:
 ```bash
 npm run dev
 ```
-This will start the admin panel on http://localhost:5000.
+This will start the admin panel on http://localhost:5174.
 
 # Now, you can access:
-The user panel at http://localhost:3000
-The admin panel at http://localhost:5000
+The frontend panel at http://localhost:5173,
+The admin panel at http://localhost:5174 &
 The backend at http://localhost:4000
