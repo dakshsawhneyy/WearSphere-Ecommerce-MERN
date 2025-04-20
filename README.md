@@ -5,7 +5,7 @@
 
 ---
 ### Live Demo
-# Frontend: https://wear-sphere-frontend.vercel.app/
+### Frontend: https://wear-sphere-frontend.vercel.app/
 ---
 
 ##  Features
@@ -100,21 +100,21 @@ ADMIN_PASSWORD=your_admin_password
 ### Running the Application Locally
 After setting up the .env files, you can run the application locally:
 
-# 1. Start Backend:
+## 1. Start Backend:
 In the backend/ directory, run the following command to start the backend:
 ```bash
 npm start
 ```
 By default, it will run on http://localhost:4000. Make sure the backend is running before starting the frontend.
 
-# 2. Start Frontend:
+## 2. Start Frontend:
 In the frontend/ directory, run:
 ```bash
 npm run dev
 ```
 This will start the frontend on http://localhost:5173.
 
-# 3. Start Admin Panel:
+## 3. Start Admin Panel:
 In the admin/ directory, run:
 ```bash
 npm run dev
