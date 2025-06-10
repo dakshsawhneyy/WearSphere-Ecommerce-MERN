@@ -1,0 +1,5 @@
+replicas: 1
+image:
+  repository: dakshsawhneyy/wearsphere-admin
+  tag: latest
+  pullPolicy: IfNotPresent

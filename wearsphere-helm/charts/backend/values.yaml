@@ -1,0 +1,7 @@
+replicas: 1
+image:
+  repository: dakshsawhneyy/wearsphere-backend
+  tag: latest
+  pullPolicy: IfNotPresent
+backendPort: 4000
+backendService: mongodb://wearsphere-mongodb:27017/e-commerce_mern

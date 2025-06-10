@@ -1,0 +1,15 @@
+dependencies:
+- name: admin
+  repository: ""
+  version: 0.1.0
+- name: frontend
+  repository: ""
+  version: 0.1.0
+- name: backend
+  repository: ""
+  version: 0.1.0
+- name: mongodb
+  repository: https://charts.bitnami.com/bitnami
+  version: 13.6.4
+digest: sha256:f8f90706e7212aa56849c334a926e58266ead85f430215c4086b61f211591f61
+generated: "2025-06-10T11:23:01.795268664Z"

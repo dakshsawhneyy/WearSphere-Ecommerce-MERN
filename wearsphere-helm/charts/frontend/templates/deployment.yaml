@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: wearsphere
+  labels:
+    app: frontend
+spec:
+  replicas: {{ .Values.replicaCount  }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: "{{ .Values.image.repository  }}:{{ .Values.image.tag  }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy  }}
+        ports:
+        - containerPort: 5173
+        env:
+        - name: VITE_BACKEND_URL
+          value: "http://backend-service:4000"
+        - name: VITE_RAZORPAY_KEY_ID
+          value: "your_razorpay_key_id"

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-deployment
+  namespace: wearsphere
+  labels:
+    app: admin
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: admin
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      containers:
+      - name: admin
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 5174
+        env:
+        - name: VITE_BACKEND_URL
+          value: "http://backend-service:4000"
+        - name: ULIMIT_NOFILE
+          value: "65536"

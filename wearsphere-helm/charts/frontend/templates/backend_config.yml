@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wearsphere-config
+  namespace: wearsphere
+data:
+  BACKEND_URL: http://65.0.19.106:4000

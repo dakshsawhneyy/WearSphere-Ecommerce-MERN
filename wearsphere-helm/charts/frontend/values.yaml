@@ -1,0 +1,10 @@
+replicaCount: 1
+image:
+  repository: dakshsawhneyy/wearsphere-frontend
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 5173
+  targetPort: 5173
+

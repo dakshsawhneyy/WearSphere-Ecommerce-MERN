@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: wearsphere
+  labels:
+    app: backend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.backendPort }}
+        env:
+        - name: MONGODB_URI
+          value: "{{ .Values.backendService }}"
+        - name: CLOUDINARY_API_KEY
+          value: "dummy_cloudinary_api_key"
+        - name: CLOUDINARY_SECRET_KEY
+          value: "dummy_cloudinary_secret"
+        - name: CLOUDINARY_NAME
+          value: "dummy_cloudinary_name"
+        - name: JWT_SECRET
+          value: "dummy_jwt_secret"
+        - name: ADMIN_EMAIL
+          value: "admin@example.com"
+        - name: ADMIN_PASSWORD
+          value: "dummy_admin_password"
+        - name: STRIPE_SECRET_KEY
+          value: "dummy_stripe_secret_key"
+        - name: RAZORPAY_KEY_SECRET
+          value: "dummy_razorpay_key_secret"
+        - name: RAZORPAY_KEY_ID
+          value: "dummy_razorpay_key_id"
