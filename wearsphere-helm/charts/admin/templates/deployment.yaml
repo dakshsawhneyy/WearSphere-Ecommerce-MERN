@@ -19,7 +19,21 @@ spec:
       - name: admin
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
-        - containerPort: 5174
+        - containerPort: {{ .Values.service.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.port }}
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 3
         env:
         - name: VITE_BACKEND_URL
           value: "http://backend-service:4000"

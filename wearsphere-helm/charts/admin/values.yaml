@@ -3,3 +3,7 @@ image:
   repository: dakshsawhneyy/wearsphere-admin
   tag: latest
   pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 5174
+  targetPort: 5174

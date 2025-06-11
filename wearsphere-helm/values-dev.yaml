@@ -1,0 +1,16 @@
+replicaCount: 1
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+ingress:
+  ingressClassName: alb
+  host: wearsphere.cctlds.online
+  frontendPort: 5173
+  backendPort: 4000
+  adminPort: 5174
