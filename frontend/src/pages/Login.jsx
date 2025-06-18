@@ -38,6 +38,7 @@ const Login = () => {
                     // store token in local storage
                     localStorage.setItem('token',response.data.token)
                 }else{
+                    console.log(response.data)
                     toast.error(response.data.message)
                 }
             }

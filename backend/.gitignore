@@ -1,2 +1,6 @@
 node_modules/
+<<<<<<< HEAD
 
+=======
+*.env
+>>>>>>> 65071c5 (Project Completed)
