@@ -7,10 +7,7 @@
 ![image](https://github.com/user-attachments/assets/3a56ed7f-a284-4c4d-9a4a-7da2ee6219d6)
 
 ![image](https://github.com/user-attachments/assets/84e26abc-fa57-4605-ab0c-165c9d0a0226)
----
-### Live Demo
-### Frontend: https://wear-sphere-frontend.vercel.app/
----
+
 
 ##  Features
 
