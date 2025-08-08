@@ -28,10 +28,5 @@ app.get('/',(req,res)=>{
     res.send("Daksh Kya Haal Hai")
 })
 
-// Health Check
-app.get("/api/health",(req,res)=>{
-    res.status(200).send("Backend Healthy");
-)}
-
 // Start the expresss server
 app.listen(port,()=> console.log('Server started on PORT : ' + port))
