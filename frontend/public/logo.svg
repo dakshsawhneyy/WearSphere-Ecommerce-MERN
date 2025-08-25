@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Wearsphere</title>
+  <!-- transparent background so it works on any tab color -->
+  <g fill="none" stroke="#111111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- sphere outline -->
+    <circle cx="32" cy="32" r="25"/>
+    <!-- monogram W -->
+    <path d="M16 24l6 16 10-16 10 16 6-16"/>
+  </g>
+</svg>
